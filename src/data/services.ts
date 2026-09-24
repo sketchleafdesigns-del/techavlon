@@ -22,8 +22,8 @@ export interface Service {
   points: [string, string, string];
   icon: ComponentType<IconProps>;
   /**
-   * Link target. All service cards currently point to the contact
-   * section; each will link to its dedicated service page once built.
+   * Link target. Built service pages use their route; other services
+   * keep the existing contact CTA until their detail pages are created.
    */
   href: string;
 }
@@ -41,7 +41,7 @@ export const services: Service[] = [
       "Server sizing, deployment & maintenance",
     ],
     icon: IconServer,
-    href: "#contact",
+    href: "/solutions/server-solutions",
   },
   {
     slug: "storage-solutions",

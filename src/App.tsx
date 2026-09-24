@@ -1,8 +1,12 @@
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { HomePage } from "@/pages/HomePage";
+import { ServerSolutionsPage } from "@/pages/ServerSolutionsPage";
 
 export default function App() {
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const isServerSolutionsPage = path === "/solutions/server-solutions";
+
   return (
     <>
       <a
@@ -13,7 +17,7 @@ export default function App() {
       </a>
       <Header />
       <main id="main">
-        <HomePage />
+        {isServerSolutionsPage ? <ServerSolutionsPage /> : <HomePage />}
       </main>
       <Footer />
     </>

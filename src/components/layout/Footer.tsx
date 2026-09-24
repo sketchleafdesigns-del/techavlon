@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { footerCompany, site } from "@/data/site";
 import { services } from "@/data/services";
+import { homeAnchor, solutionHref } from "@/lib/navigation";
 import {
   IconClock,
   IconMail,
@@ -47,7 +48,7 @@ export function Footer() {
               {services.map((service) => (
                 <li key={service.slug}>
                   <a
-                    href="#solutions"
+                    href={solutionHref(service.slug)}
                     className="text-sm text-navy-200 transition-colors hover:text-accent-300"
                   >
                     {service.name}
@@ -66,7 +67,7 @@ export function Footer() {
               {footerCompany.map((item) => (
                 <li key={item.label}>
                   <a
-                    href={item.href}
+                    href={homeAnchor(item.href.slice(1))}
                     className="text-sm text-navy-200 transition-colors hover:text-accent-300"
                   >
                     {item.label}

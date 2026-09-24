@@ -5,6 +5,7 @@ import { Logo } from "@/components/ui/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { primaryNav, site } from "@/data/site";
 import { services } from "@/data/services";
+import { homeAnchor, solutionHref } from "@/lib/navigation";
 import {
   IconChevronDown,
   IconClock,
@@ -21,8 +22,9 @@ import {
  *  - primary navigation with a Solutions dropdown
  *  - full-screen mobile menu with an expandable Solutions list
  *
- * Solutions links point to the homepage solutions section for now;
- * each entry swaps to its dedicated page route once the page exists.
+ * Built solution pages open their routes; remaining solution links lead
+ * to their corresponding cards on the homepage. Homepage section links
+ * remain rooted correctly when the header is reused on a detail page.
  */
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -168,7 +170,7 @@ export function Header() {
                         return (
                           <a
                             key={service.slug}
-                            href="#solutions"
+                            href={solutionHref(service.slug)}
                             onClick={closeMobile}
                             className="rounded-md px-3.5 py-2.5 transition-colors hover:bg-surface"
                           >
@@ -188,7 +190,7 @@ export function Header() {
                         Delivered individually or as an integrated solution
                       </span>
                       <a
-                        href="#contact"
+                        href={homeAnchor("contact")}
                         className="shrink-0 text-xs font-semibold text-accent-700 transition-colors hover:text-ink-900"
                       >
                         Talk to an Expert →
@@ -202,7 +204,7 @@ export function Header() {
                 .map((item) => (
                   <li key={item.label}>
                     <a
-                      href={item.href}
+                      href={homeAnchor(item.href.slice(1))}
                       className="block rounded-md px-3.5 py-2 text-sm font-medium text-navy-100 transition-colors hover:bg-white/5 hover:text-white"
                     >
                       {item.label}
@@ -214,7 +216,7 @@ export function Header() {
 
           <div className="flex items-center gap-3">
             <ButtonLink
-              href="#contact"
+              href={homeAnchor("contact")}
               size="sm"
               className="hidden lg:inline-flex"
             >
@@ -272,7 +274,7 @@ export function Header() {
                           return (
                             <li key={service.slug}>
                               <a
-                                href="#solutions"
+                                href={solutionHref(service.slug)}
                                 onClick={closeMobile}
                                 className="flex items-center gap-3 rounded-md px-3 py-2.5 text-[15px] text-navy-100 transition-colors hover:bg-white/5 hover:text-white"
                               >
@@ -290,7 +292,7 @@ export function Header() {
                     .map((item) => (
                       <li key={item.label}>
                         <a
-                          href={item.href}
+                          href={homeAnchor(item.href.slice(1))}
                           onClick={closeMobile}
                           className="flex items-center justify-between py-3.5 text-base font-semibold text-white transition-colors hover:text-accent-300"
                         >
@@ -308,7 +310,7 @@ export function Header() {
               </nav>
 
               <ButtonLink
-                href="#contact"
+                href={homeAnchor("contact")}
                 onClick={closeMobile}
                 className="mt-8 w-full"
                 size="lg"

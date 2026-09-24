@@ -15,8 +15,9 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
   const Icon = service.icon;
   return (
     <article
+      id={`solution-${service.slug}`}
       className={cn(
-        "group relative flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-card transition-all duration-300",
+        "group relative flex h-full scroll-mt-28 flex-col rounded-lg border border-line bg-white p-6 shadow-card transition-all duration-300",
         "hover:-translate-y-1 hover:border-accent-500/50 hover:shadow-lift",
         className
       )}
